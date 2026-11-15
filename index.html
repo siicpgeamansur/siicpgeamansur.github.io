@@ -17,7 +17,6 @@
             --ggb-orange: #E65100;
             --ggb-pink: #C2185B;
 
-            --navy-institution: #0F233C;
             --bg-page: #F5F7FA;
             --bg-surface: #FFFFFF;
             --bg-subtle: #EEF2F6;
@@ -31,23 +30,23 @@
             --shadow-hover: 0 12px 24px -6px rgba(0, 112, 184, 0.16);
         }
 
+        /* Vrai mode sombre pur et profond (aucun bleu foncé) */
         [data-theme="dark"] {
             --ggb-blue: #3898EC;
             --ggb-blue-dark: #60A5FA;
-            --ggb-blue-light: rgba(56, 152, 236, 0.14);
+            --ggb-blue-light: rgba(56, 152, 236, 0.12);
 
-            --navy-institution: #091526;
-            --bg-page: #0D131D;
-            --bg-surface: #161F2E;
-            --bg-subtle: #1E293B;
+            --bg-page: #000000;
+            --bg-surface: #0A0A0A;
+            --bg-subtle: #141414;
 
-            --text-main: #F1F5F9;
-            --text-secondary: #CBD5E1;
-            --text-muted: #94A3B8;
+            --text-main: #F8FAFC;
+            --text-secondary: #A1A1AA;
+            --text-muted: #71717A;
 
-            --border-color: #2A374A;
-            --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
+            --border-color: #27272A;
+            --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.8);
+            --shadow-hover: 0 12px 24px -6px rgba(0, 0, 0, 0.9);
         }
 
         * {
@@ -89,7 +88,7 @@
             justify-content: space-between;
             align-items: center;
             min-height: 76px;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .brand {
@@ -128,7 +127,7 @@
             color: var(--ggb-blue);
         }
 
-        /* Centre de la navbar : Filtres de matières + Lien GitHub */
+        /* Centre de la navbar : Menus déroulants SII / ITC et filtres */
         .nav-center {
             display: flex;
             align-items: center;
@@ -150,14 +149,59 @@
             transition: all 0.15s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: var(--ggb-blue);
             background-color: var(--ggb-blue-light);
         }
 
-        .nav-link.active {
-            color: var(--ggb-blue);
+        /* Dropdown menus SII & ITC */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--bg-surface);
+            min-width: 260px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            z-index: 200;
+            padding: 0.4rem 0;
+            margin-top: 4px;
+        }
+
+        [data-theme="dark"] .dropdown-content {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+        }
+
+        .dropdown-content button {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 0.55rem 1rem;
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dropdown-content button:hover {
             background-color: var(--ggb-blue-light);
+            color: var(--ggb-blue);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         .nav-github-link {
@@ -178,7 +222,7 @@
             background-color: var(--ggb-blue-light);
         }
 
-        /* Droite de la navbar : Recherche compacte + Mode sombre */
+        /* Droite de la navbar : Recherche compacte & Mode sombre */
         .nav-right {
             display: flex;
             align-items: center;
@@ -193,13 +237,13 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 0.3rem 0.6rem;
-            width: 230px;
+            width: 210px;
             transition: border-color 0.15s, width 0.2s;
         }
 
         .nav-search:focus-within {
             border-color: var(--ggb-blue);
-            width: 280px;
+            width: 260px;
             background: var(--bg-surface);
         }
 
@@ -240,7 +284,6 @@
             border-color: var(--ggb-blue);
         }
 
-        /* Compteur de résultats épuré */
         .results-bar {
             padding: 1.5rem 0 0.5rem;
             display: flex;
@@ -440,10 +483,10 @@
 
         /* ==================== FOOTER ==================== */
         footer {
-            background-color: var(--navy-institution);
-            color: #CBD5E1;
+            background-color: var(--bg-surface);
+            color: var(--text-secondary);
             padding: 2.75rem 0 2rem;
-            border-top: 4px solid var(--ggb-blue);
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-grid {
@@ -451,11 +494,11 @@
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 2.5rem;
             padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .footer-title {
-            color: #FFFFFF;
+            color: var(--text-main);
             font-size: 1.05rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
@@ -463,7 +506,7 @@
 
         .footer-text {
             font-size: 0.9rem;
-            color: #94A3B8;
+            color: var(--text-muted);
             line-height: 1.6;
         }
 
@@ -476,13 +519,13 @@
         }
 
         .footer-links a {
-            color: #CBD5E1;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.15s;
         }
 
         .footer-links a:hover {
-            color: #38BDF8;
+            color: var(--ggb-blue);
         }
 
         .footer-bottom {
@@ -492,7 +535,7 @@
             flex-wrap: wrap;
             gap: 1rem;
             font-size: 0.84rem;
-            color: #94A3B8;
+            color: var(--text-muted);
         }
 
         .hidden {
@@ -523,10 +566,10 @@
 </head>
 <body>
 
-    <!-- Barre de navigation unique, unifiée et "freeze" (Sticky) -->
+    <!-- Barre de navigation avec menus déroulants SII et ITC -->
     <header class="navbar">
         <div class="container">
-            <a href="#" class="brand">
+            <a href="#" class="brand" onclick="resetFilters(); return false;">
                 <svg class="brand-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="44" height="44" rx="10" fill="#EBF5FC"/>
                     <ellipse cx="22" cy="22" rx="14" ry="9" transform="rotate(-28 22 22)" stroke="#0070B8" stroke-width="2.4"/>
@@ -542,12 +585,38 @@
                 </div>
             </a>
 
-            <!-- Centre : Filtres de navigation & lien GitHub -->
+            <!-- Centre : Navigation, Boutons globaux et Menus déroulants SII / ITC -->
             <nav class="nav-center" aria-label="Navigation par discipline">
                 <button class="nav-link active" data-filter="all">Tout</button>
-                <button class="nav-link" data-filter="mecanique">Mécanique</button>
-                <button class="nav-link" data-filter="slci">SLCI</button>
-                <button class="nav-link" data-filter="itc">ITC</button>
+                
+                <!-- Menu Déroulant SII -->
+                <div class="dropdown">
+                    <button class="nav-link" data-main="sii">SII ▼</button>
+                    <div class="dropdown-content">
+                        <button onclick="filterBySub('is')">Ingénierie système</button>
+                        <button onclick="filterBySub('mecanique')">Mécanique</button>
+                        <button onclick="filterBySub('slci')">SLCI & Asservissements</button>
+                        <button onclick="filterBySub('info')">Informatique SII</button>
+                        <button onclick="filterBySub('ecarts')">Écarts</button>
+                        <button onclick="filterBySub('sim')">Modélisation système</button>
+                        <button onclick="filterBySub('exp')">Expérimental</button>
+                    </div>
+                </div>
+
+                <!-- Menu Déroulant ITC -->
+                <div class="dropdown">
+                    <button class="nav-link" data-main="itc">ITC ▼</button>
+                    <div class="dropdown-content">
+                        <button onclick="filterBySub('bases')">Bases de la programmation</button>
+                        <button onclick="filterBySub('algorithmique')">Algorithmique classique</button>
+                        <button onclick="filterBySub('complexite')">Complexité & validation</button>
+                        <button onclick="filterBySub('donnees')">Représentation des données</button>
+                        <button onclick="filterBySub('graphes')">Graphes & chemins</button>
+                        <button onclick="filterBySub('bdd')">Bases de données (SQL)</button>
+                        <button onclick="filterBySub('ia')">Prog. dynamique & IA</button>
+                    </div>
+                </div>
+
                 <button class="nav-link" data-filter="numerique">Ing. Numérique</button>
                 <button class="nav-link" data-filter="gestion">Gestion CPGE</button>
                 <a class="nav-github-link" href="https://github.com/siicpgeamansur" target="_blank" rel="noopener">GitHub ↗</a>
@@ -579,10 +648,10 @@
         </div>
 
         <!-- ==================== 1. MÉCANIQUE ==================== -->
-        <section class="domain-block" data-domain="mecanique" style="--card-accent: #0070B8;">
+        <section class="domain-block" data-domain="mecanique" data-sub="mecanique" style="--card-accent: #0070B8;">
             <div class="domain-banner">
                 <div class="domain-title-wrap" style="border-left-color: #0070B8;">
-                    <span class="domain-kicker" style="color: #0070B8;">Sciences Industrielles de l'Ingénieur</span>
+                    <span class="domain-kicker" style="color: #0070B8;">SII — Mécanique</span>
                     <h2>Mécanique</h2>
                     <p>Cinématique, torseurs, liaisons, dynamique, statique et dimensionnement des actionneurs.</p>
                 </div>
@@ -739,10 +808,10 @@
         </section>
 
         <!-- ==================== 2. SLCI ==================== -->
-        <section class="domain-block" data-domain="slci" style="--card-accent: #673AB7;">
+        <section class="domain-block" data-domain="slci" data-sub="slci" style="--card-accent: #673AB7;">
             <div class="domain-banner">
                 <div class="domain-title-wrap" style="border-left-color: #673AB7;">
-                    <span class="domain-kicker" style="color: #673AB7;">Sciences Industrielles de l'Ingénieur</span>
+                    <span class="domain-kicker" style="color: #673AB7;">SII — SLCI & Asservissements</span>
                     <h2>SLCI — Automatique, Capteurs & Actionneurs</h2>
                     <p>Systèmes Linéaires Continus et Invariants, correction, instrumentation et conversion électromécanique.</p>
                 </div>
@@ -833,7 +902,7 @@
             </div>
 
             <div class="sub-group">
-                <h3 class="sub-group-title"><span class="dot" style="background:#673AB7;"></span>Capteurs</h3>
+                <h3 class="sub-group-title"><span class="dot" style="background:#673AB7;"></span>Capteurs & Actionneurs</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/SLCI/codeur_incremental.html">
                         <div>
@@ -863,12 +932,6 @@
                         </div>
                         <div class="sim-card-action"><span>Lancer la simulation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                     </a>
-                </div>
-            </div>
-
-            <div class="sub-group">
-                <h3 class="sub-group-title"><span class="dot" style="background:#673AB7;"></span>Énergie et actionneurs</h3>
-                <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/SLCI/alimentation_elec.html">
                         <div>
                             <div class="sim-card-header"><span class="sim-card-title">Alimentation réglable AC ou DC</span></div>
@@ -895,94 +958,18 @@
         </section>
 
         <!-- ==================== 3. ITC ==================== -->
-        <section class="domain-block" data-domain="itc" style="--card-accent: #E65100;">
+        <section class="domain-block" data-domain="itc" data-sub="itc" style="--card-accent: #E65100;">
             <div class="domain-banner">
                 <div class="domain-title-wrap" style="border-left-color: #E65100;">
-                    <span class="domain-kicker" style="color: #E65100;">Informatique Tronc Commun</span>
+                    <span class="domain-kicker" style="color: #E65100;">ITC — Informatique Tronc Commun</span>
                     <h2>Informatique pour Tous (ITC)</h2>
                     <p>Algorithmique, structures de données, programmation Python, architecture, IA et SQL (1re et 2e année).</p>
                 </div>
                 <a class="repo-btn" href="https://github.com/siicpgeamansur/ITC" target="_blank" rel="noopener">Code source GitHub ↗</a>
             </div>
 
-            <div class="sub-group">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Algorithmique</h3>
-                <div class="cards-grid">
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/recherche_sequentielle_boucles_imbriquees.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Recherche séquentielle & boucles</span><span class="badge-level">1re année</span></div>
-                            <p class="sim-card-desc">Entraînement à la recherche séquentielle et aux boucles imbriquées.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/methodes_analyse_algorithmes.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Méthodes et analyse algorithmique</span><span class="badge-level">1re année</span></div>
-                            <p class="sim-card-desc">Méthodes de conception, terminaison, correction et complexité algorithmique.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/dichotomie.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Dichotomie</span><span class="badge-level">1re année</span></div>
-                            <p class="sim-card-desc">Visualisation et pratique pas à pas de la recherche dichotomique.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/algorithmes_gloutons.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Algorithmes gloutons</span><span class="badge-level">1re année</span></div>
-                            <p class="sim-card-desc">Illustration du principe glouton et de ses applications classiques.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/recursivite.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Récursivité</span><span class="badge-level">1re année</span></div>
-                            <p class="sim-card-desc">Visualisation et apprentissage des concepts de base de la récursivité.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/dfs_bfs_dijkstra.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Graphes & plus court chemin (Dijkstra, A*)</span><span class="badge-level">1re année</span></div>
-                            <p class="sim-card-desc">Parcours de graphes (DFS, BFS) et recherche de plus court chemin.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/Parcours_de_graphes_animation.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Parcours de graphes (animation)</span><span class="badge-level">2e année</span></div>
-                            <p class="sim-card-desc">Animation des différents parcours de graphes au programme de CPGE en deuxième année.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/algorithmes_tri.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Algorithmes de tri</span><span class="badge-level">2e année</span></div>
-                            <p class="sim-card-desc">Page interactive pour visualiser et s'entraîner aux algorithmes de tri.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/programmation_dynamique.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Programmation dynamique</span><span class="badge-level">2e année</span></div>
-                            <p class="sim-card-desc">Illustration de la résolution de problèmes d'optimisation par programmation dynamique.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/theorie_des_jeux.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Théorie des jeux</span><span class="badge-level">2e année</span></div>
-                            <p class="sim-card-desc">Exploration des stratégies et de la théorie des jeux en algorithmique.</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="sub-group">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Python, Architecture & Structures de données</h3>
+            <div class="sub-group" data-sub="bases">
+                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Bases de la programmation</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/structures_controle.html">
                         <div>
@@ -1005,37 +992,137 @@
                         </div>
                         <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                     </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/representation_entiers_flottants.html">
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/recursivite.html">
                         <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Entiers et flottants en mémoire</span><span class="badge-level">1re année</span></div>
-                            <p class="sim-card-desc">Outil de visualisation de la représentation des nombres en mémoire (entiers et virgule flottante).</p>
-                        </div>
-                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                    </a>
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/tables_de_hachage.html">
-                        <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Tables de hachage</span><span class="badge-level">2e année</span></div>
-                            <p class="sim-card-desc">Page illustrant le fonctionnement interne des tables de hachage.</p>
+                            <div class="sim-card-header"><span class="sim-card-title">Récursivité</span><span class="badge-level">1re année</span></div>
+                            <p class="sim-card-desc">Visualisation de la pile d'appels et apprentissage des concepts de base de la récursivité.</p>
                         </div>
                         <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                     </a>
                 </div>
             </div>
 
-            <div class="sub-group">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Intelligence artificielle & Bases de données</h3>
+            <div class="sub-group" data-sub="algorithmique">
+                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Algorithmique classique</h3>
                 <div class="cards-grid">
-                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/ia.html">
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/recherche_sequentielle_boucles_imbriquees.html">
                         <div>
-                            <div class="sim-card-header"><span class="sim-card-title">Intelligence artificielle & Machine Learning</span><span class="badge-level">2e année</span></div>
-                            <p class="sim-card-desc">k-NN, k-moyennes, régression linéaire et descente de gradient, arbres de décision, matrice de confusion et perceptron.</p>
+                            <div class="sim-card-header"><span class="sim-card-title">Recherche séquentielle & boucles</span><span class="badge-level">1re année</span></div>
+                            <p class="sim-card-desc">Entraînement à la recherche séquentielle et aux boucles imbriquées.</p>
                         </div>
                         <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                     </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/dichotomie.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Dichotomie</span><span class="badge-level">1re année</span></div>
+                            <p class="sim-card-desc">Visualisation et pratique pas à pas de la recherche dichotomique.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/algorithmes_gloutons.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Algorithmes gloutons</span><span class="badge-level">1re année</span></div>
+                            <p class="sim-card-desc">Illustration du principe glouton et de ses applications classiques.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/algorithmes_tri.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Algorithmes de tri</span><span class="badge-level">2e année</span></div>
+                            <p class="sim-card-desc">Visualisation et entraînement sur les principaux algorithmes de tri.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub-group" data-sub="complexite">
+                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Complexité & validation</h3>
+                <div class="cards-grid">
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/methodes_analyse_algorithmes.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Méthodes et analyse algorithmique</span><span class="badge-level">1re année</span></div>
+                            <p class="sim-card-desc">Méthodes de conception, terminaison, correction et complexité asymptotique.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub-group" data-sub="donnees">
+                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Représentation des données</h3>
+                <div class="cards-grid">
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/representation_entiers_flottants.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Entiers et flottants en mémoire</span><span class="badge-level">1re année</span></div>
+                            <p class="sim-card-desc">Visualisation du codage binaire des entiers et de la norme IEEE 754 (virgule flottante).</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/tables_de_hachage.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Tables de hachage</span><span class="badge-level">2e année</span></div>
+                            <p class="sim-card-desc">Fonctionnement interne des dictionnaires, fonctions de hachage et gestion des collisions.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub-group" data-sub="graphes">
+                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Graphes & chemins</h3>
+                <div class="cards-grid">
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/dfs_bfs_dijkstra.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Graphes & plus court chemin (Dijkstra, A*)</span><span class="badge-level">1re année</span></div>
+                            <p class="sim-card-desc">Parcours de graphes (DFS, BFS) et recherche de plus court chemin.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/Parcours_de_graphes_animation.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Parcours de graphes (animation)</span><span class="badge-level">2e année</span></div>
+                            <p class="sim-card-desc">Animation interactive des différents parcours de graphes au programme de 2e année.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub-group" data-sub="bdd">
+                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Bases de données (SQL)</h3>
+                <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/sql.html">
                         <div>
                             <div class="sim-card-header"><span class="sim-card-title">Bases de données & SQL</span><span class="badge-level">2e année</span></div>
-                            <p class="sim-card-desc">Bases de données relationnelles : console SQL avec moteur embarqué, jointures, agrégats, HAVING et SQL en Python (sqlite3).</p>
+                            <p class="sim-card-desc">Console SQL interactive embarquée : jointures, agrégats, HAVING et liaison Python (sqlite3).</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sub-group" data-sub="ia">
+                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Programmation dynamique & IA</h3>
+                <div class="cards-grid">
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/programmation_dynamique.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Programmation dynamique</span><span class="badge-level">2e année</span></div>
+                            <p class="sim-card-desc">Illustration de la résolution de problèmes d'optimisation par programmation dynamique.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/ia.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Intelligence artificielle & Machine Learning</span><span class="badge-level">2e année</span></div>
+                            <p class="sim-card-desc">k-NN, k-moyennes, descente de gradient, arbres de décision, matrice de confusion et perceptron.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/theorie_des_jeux.html">
+                        <div>
+                            <div class="sim-card-header"><span class="sim-card-title">Théorie des jeux</span><span class="badge-level">2e année</span></div>
+                            <p class="sim-card-desc">Exploration des stratégies et des algorithmes de théorie des jeux (MinMax, etc.).</p>
                         </div>
                         <div class="sim-card-action"><span>Lancer l'atelier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                     </a>
@@ -1180,7 +1267,7 @@
     </footer>
 
     <script>
-        // Thème clair / sombre
+        // Vrai mode sombre pur (#000000)
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const preferredTheme = localStorage.getItem('theme') || 'light';
@@ -1204,8 +1291,8 @@
         const emptyMsg = document.getElementById('emptyMsg');
         const resultCounter = document.getElementById('resultCounter');
 
-        const allCardsCount = document.querySelectorAll('.sim-card').length;
         let activeFilter = 'all';
+        let activeSubFilter = null;
 
         function updateCatalog() {
             const query = searchInput.value.toLowerCase().trim();
@@ -1215,7 +1302,7 @@
                 const domain = block.getAttribute('data-domain');
                 const matchesDomain = activeFilter === 'all' || domain === activeFilter;
 
-                if (!matchesDomain) {
+                if (!matchesDomain && !activeSubFilter) {
                     block.classList.add('hidden');
                     return;
                 }
@@ -1225,6 +1312,14 @@
 
                 if (subGroups.length > 0) {
                     subGroups.forEach(group => {
+                        const subName = group.getAttribute('data-sub');
+                        const matchesSub = !activeSubFilter || subName === activeSubFilter;
+
+                        if (!matchesSub && activeFilter === 'all') {
+                            group.classList.add('hidden');
+                            return;
+                        }
+
                         let groupVisible = 0;
                         group.querySelectorAll('.sim-card').forEach(card => {
                             const match = card.textContent.toLowerCase().includes(query);
@@ -1258,6 +1353,7 @@
         navButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 activeFilter = btn.getAttribute('data-filter');
+                activeSubFilter = null;
                 navButtons.forEach(b => {
                     b.classList.toggle('active', b.getAttribute('data-filter') === activeFilter);
                 });
@@ -1265,8 +1361,27 @@
             });
         });
 
-        searchInput.addEventListener('input', updateCatalog);
+        function filterBySub(subKey) {
+            activeFilter = 'itc'; // Cible le domaine principal contenant les sous-groupes (ex: ITC)
+            if (subKey === 'is' || subKey === 'mecanique' || subKey === 'slci' || subKey === 'info' || subKey === 'ecarts' || subKey === 'sim' || subKey === 'exp') {
+                activeFilter = 'mecanique'; // Ajuste si nécessaire selon les sections
+            }
+            activeSubFilter = subKey;
+            navButtons.forEach(b => b.classList.remove('active'));
+            updateCatalog();
+        }
 
+        function resetFilters() {
+            activeFilter = 'all';
+            activeSubFilter = null;
+            navButtons.forEach(b => {
+                b.classList.toggle('active', b.getAttribute('data-filter') === 'all');
+            });
+            searchInput.value = '';
+            updateCatalog();
+        }
+
+        searchInput.addEventListener('input', updateCatalog);
         updateCatalog();
     </script>
 </body>
