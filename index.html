@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SII & ITC en CPGE — Portail des Simulateurs Interactifs</title>
+    <title>SII & ITC en CPGE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -16,6 +16,8 @@
             --ggb-purple: #673AB7;
             --ggb-orange: #E65100;
             --ggb-pink: #C2185B;
+
+            --active-theme-color: #0070B8;
 
             --bg-page: #F5F7FA;
             --bg-surface: #FFFFFF;
@@ -30,7 +32,7 @@
             --shadow-hover: 0 12px 24px -6px rgba(0, 112, 184, 0.16);
         }
 
-        /* Vrai mode sombre pur et profond (aucun bleu foncé) */
+        /* Vrai mode sombre pur (#000000) */
         [data-theme="dark"] {
             --ggb-blue: #3898EC;
             --ggb-blue-dark: #60A5FA;
@@ -73,14 +75,15 @@
             padding: 0 1.5rem;
         }
 
-        /* ==================== NAVBAR (Sticky & Unifiée) ==================== */
+        /* ==================== NAVBAR ==================== */
         .navbar {
             background-color: var(--bg-surface);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--active-theme-color);
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: border-color 0.25s ease;
         }
 
         .navbar .container {
@@ -124,14 +127,15 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            color: var(--ggb-blue);
+            color: var(--active-theme-color);
+            transition: color 0.25s ease;
         }
 
-        /* Centre de la navbar : Menus déroulants SII / ITC et filtres */
+        /* Centre de la navbar */
         .nav-center {
             display: flex;
             align-items: center;
-            gap: 0.35rem;
+            gap: 0.45rem;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -140,21 +144,21 @@
             background: none;
             border: none;
             font-family: inherit;
-            font-size: 0.88rem;
-            font-weight: 600;
+            font-size: 0.92rem;
+            font-weight: 700;
             color: var(--text-secondary);
-            padding: 0.45rem 0.75rem;
-            border-radius: 6px;
+            padding: 0.5rem 0.9rem;
+            border-radius: 7px;
             cursor: pointer;
             transition: all 0.15s ease;
         }
 
         .nav-link:hover, .nav-link.active {
-            color: var(--ggb-blue);
-            background-color: var(--ggb-blue-light);
+            color: var(--active-theme-color);
+            background-color: var(--bg-subtle);
         }
 
-        /* Dropdown menus SII & ITC */
+        /* Menus déroulants SII & ITC */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -166,17 +170,17 @@
             top: 100%;
             left: 0;
             background-color: var(--bg-surface);
-            min-width: 260px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            min-width: 270px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             z-index: 200;
-            padding: 0.4rem 0;
+            padding: 0.45rem;
             margin-top: 4px;
         }
 
         [data-theme="dark"] .dropdown-content {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.95);
         }
 
         .dropdown-content button {
@@ -184,23 +188,33 @@
             text-align: left;
             background: none;
             border: none;
-            padding: 0.55rem 1rem;
+            padding: 0.6rem 0.85rem;
+            border-radius: 6px;
             font-family: inherit;
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             font-weight: 600;
             color: var(--text-secondary);
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            transition: all 0.15s ease;
+        }
+
+        .dropdown-content button .swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
         .dropdown-content button:hover {
-            background-color: var(--ggb-blue-light);
-            color: var(--ggb-blue);
+            background-color: var(--bg-subtle);
+            color: var(--text-main);
         }
 
-        .dropdown:hover .dropdown-content {
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content {
             display: block;
         }
 
@@ -217,12 +231,12 @@
         }
 
         .nav-github-link:hover {
-            color: var(--ggb-blue);
-            border-color: var(--ggb-blue);
-            background-color: var(--ggb-blue-light);
+            color: var(--active-theme-color);
+            border-color: var(--active-theme-color);
+            background-color: var(--bg-subtle);
         }
 
-        /* Droite de la navbar : Recherche compacte & Mode sombre */
+        /* Droite de la navbar */
         .nav-right {
             display: flex;
             align-items: center;
@@ -236,13 +250,13 @@
             background: var(--bg-subtle);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 0.3rem 0.6rem;
+            padding: 0.32rem 0.65rem;
             width: 210px;
             transition: border-color 0.15s, width 0.2s;
         }
 
         .nav-search:focus-within {
-            border-color: var(--ggb-blue);
+            border-color: var(--active-theme-color);
             width: 260px;
             background: var(--bg-surface);
         }
@@ -281,11 +295,77 @@
         }
 
         .theme-toggle:hover {
-            border-color: var(--ggb-blue);
+            border-color: var(--active-theme-color);
         }
 
+        /* ==================== BANNIÈRE DE THÉMATIQUE COLORÉE ==================== */
+        .theme-hero {
+            display: none;
+            padding: 2rem 0;
+            color: #FFFFFF;
+            margin-bottom: 0.5rem;
+            transition: background 0.25s ease;
+        }
+
+        .theme-hero.visible {
+            display: block;
+        }
+
+        .theme-hero-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .theme-hero-kicker {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-hero h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .theme-hero p {
+            font-size: 1rem;
+            opacity: 0.92;
+            margin-top: 0.35rem;
+            max-width: 720px;
+        }
+
+        .back-home-btn {
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            color: #FFFFFF;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .back-home-btn:hover {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        /* ==================== BARRE DE RÉSULTATS ==================== */
         .results-bar {
-            padding: 1.5rem 0 0.5rem;
+            padding: 1.35rem 0 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -296,7 +376,7 @@
 
         /* ==================== CATALOG SECTIONS ==================== */
         main {
-            padding: 1.5rem 0 4.5rem;
+            padding: 1rem 0 4.5rem;
         }
 
         .domain-block {
@@ -358,8 +438,8 @@
         }
 
         .repo-btn:hover {
-            border-color: var(--ggb-blue);
-            color: var(--ggb-blue);
+            border-color: var(--active-theme-color);
+            color: var(--active-theme-color);
         }
 
         .sub-group {
@@ -437,8 +517,8 @@
             font-weight: 500;
             padding: 0.15rem 0.45rem;
             border-radius: 4px;
-            background: var(--ggb-blue-light);
-            color: var(--ggb-blue);
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
             white-space: nowrap;
             flex-shrink: 0;
         }
@@ -474,11 +554,24 @@
         .empty-msg {
             display: none;
             text-align: center;
-            padding: 3.5rem 1rem;
+            padding: 3.5rem 1.5rem;
             background: var(--bg-surface);
             border: 1px dashed var(--border-color);
             border-radius: 12px;
             color: var(--text-secondary);
+        }
+
+        .empty-msg button {
+            margin-top: 1rem;
+            background: var(--active-theme-color);
+            color: #FFFFFF;
+            border: none;
+            padding: 0.55rem 1.1rem;
+            border-radius: 7px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         /* ==================== FOOTER ==================== */
@@ -542,7 +635,7 @@
             display: none !important;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1050px) {
             .navbar .container {
                 flex-direction: column;
                 padding-top: 0.75rem;
@@ -561,15 +654,19 @@
                 flex-grow: 1;
                 max-width: none;
             }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Barre de navigation avec menus déroulants SII et ITC -->
+    <!-- Barre de navigation supérieure -->
     <header class="navbar">
         <div class="container">
-            <a href="#" class="brand" onclick="resetFilters(); return false;">
+            <a href="#" class="brand" onclick="selectFilter('all'); return false;">
                 <svg class="brand-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="44" height="44" rx="10" fill="#EBF5FC"/>
                     <ellipse cx="22" cy="22" rx="14" ry="9" transform="rotate(-28 22 22)" stroke="#0070B8" stroke-width="2.4"/>
@@ -581,48 +678,47 @@
                 </svg>
                 <div class="brand-text">
                     <span class="brand-title">SII & ITC • CPGE</span>
-                    <span class="brand-sub">Simulateurs Interactifs</span>
+                    <span class="brand-sub" id="brandSubLabel">Simulateurs Interactifs</span>
                 </div>
             </a>
 
-            <!-- Centre : Navigation, Boutons globaux et Menus déroulants SII / ITC -->
-            <nav class="nav-center" aria-label="Navigation par discipline">
-                <button class="nav-link active" data-filter="all">Tout</button>
-                
-                <!-- Menu Déroulant SII -->
+            <!-- Bandeau : Tout, SII, ITC, Gestion CPGE -->
+            <nav class="nav-center" aria-label="Navigation principale">
+                <button class="nav-link active" id="btn-all" onclick="selectFilter('all')">Tout</button>
+
+                <!-- Menu déroulant SII -->
                 <div class="dropdown">
-                    <button class="nav-link" data-main="sii">SII ▼</button>
+                    <button class="nav-link" id="btn-sii" onclick="selectFilter('sii')">SII ▾</button>
                     <div class="dropdown-content">
-                        <button onclick="filterBySub('is')">Ingénierie système</button>
-                        <button onclick="filterBySub('mecanique')">Mécanique</button>
-                        <button onclick="filterBySub('slci')">SLCI & Asservissements</button>
-                        <button onclick="filterBySub('info')">Informatique SII</button>
-                        <button onclick="filterBySub('ecarts')">Écarts</button>
-                        <button onclick="filterBySub('sim')">Modélisation système</button>
-                        <button onclick="filterBySub('exp')">Expérimental</button>
+                        <button onclick="selectTheme('sii-is')"><span class="swatch" style="background:#0284C7;"></span>Ingénierie système</button>
+                        <button onclick="selectTheme('sii-mecanique')"><span class="swatch" style="background:#0070B8;"></span>Mécanique</button>
+                        <button onclick="selectTheme('sii-slci')"><span class="swatch" style="background:#673AB7;"></span>SLCI & Asservissements</button>
+                        <button onclick="selectTheme('sii-numerique')"><span class="swatch" style="background:#00897B;"></span>Ingénierie numérique</button>
+                        <button onclick="selectTheme('sii-ecarts')"><span class="swatch" style="background:#D97706;"></span>Écarts</button>
+                        <button onclick="selectTheme('sii-sim')"><span class="swatch" style="background:#4F46E5;"></span>Modélisation système</button>
+                        <button onclick="selectTheme('sii-exp')"><span class="swatch" style="background:#059669;"></span>Expérimental</button>
                     </div>
                 </div>
 
-                <!-- Menu Déroulant ITC -->
+                <!-- Menu déroulant ITC -->
                 <div class="dropdown">
-                    <button class="nav-link" data-main="itc">ITC ▼</button>
+                    <button class="nav-link" id="btn-itc" onclick="selectFilter('itc')">ITC ▾</button>
                     <div class="dropdown-content">
-                        <button onclick="filterBySub('bases')">Bases de la programmation</button>
-                        <button onclick="filterBySub('algorithmique')">Algorithmique classique</button>
-                        <button onclick="filterBySub('complexite')">Complexité & validation</button>
-                        <button onclick="filterBySub('donnees')">Représentation des données</button>
-                        <button onclick="filterBySub('graphes')">Graphes & chemins</button>
-                        <button onclick="filterBySub('bdd')">Bases de données (SQL)</button>
-                        <button onclick="filterBySub('ia')">Prog. dynamique & IA</button>
+                        <button onclick="selectTheme('itc-bases')"><span class="swatch" style="background:#E65100;"></span>Bases de la programmation</button>
+                        <button onclick="selectTheme('itc-algorithmique')"><span class="swatch" style="background:#EA580C;"></span>Algorithmique classique</button>
+                        <button onclick="selectTheme('itc-complexite')"><span class="swatch" style="background:#B45309;"></span>Complexité & validation</button>
+                        <button onclick="selectTheme('itc-donnees')"><span class="swatch" style="background:#C2410C;"></span>Représentation des données</button>
+                        <button onclick="selectTheme('itc-graphes')"><span class="swatch" style="background:#9A3412;"></span>Graphes & chemins</button>
+                        <button onclick="selectTheme('itc-bdd')"><span class="swatch" style="background:#0D9488;"></span>Bases de données (SQL)</button>
+                        <button onclick="selectTheme('itc-ia')"><span class="swatch" style="background:#7C3AED;"></span>Prog. dynamique & IA</button>
                     </div>
                 </div>
 
-                <button class="nav-link" data-filter="numerique">Ing. Numérique</button>
-                <button class="nav-link" data-filter="gestion">Gestion CPGE</button>
+                <button class="nav-link" id="btn-gestion" onclick="selectFilter('gestion')">Gestion CPGE</button>
                 <a class="nav-github-link" href="https://github.com/siicpgeamansur" target="_blank" rel="noopener">GitHub ↗</a>
             </nav>
 
-            <!-- Droite : Recherche intégrée & Mode sombre -->
+            <!-- Recherche & Mode sombre -->
             <div class="nav-right">
                 <div class="nav-search">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -639,6 +735,18 @@
         </div>
     </header>
 
+    <!-- Bandeau coloré dynamique lorsqu'une thématique est sélectionnée -->
+    <section class="theme-hero" id="themeHero">
+        <div class="container theme-hero-inner">
+            <div>
+                <span class="theme-hero-kicker" id="themeHeroKicker">Thématique</span>
+                <h1 id="themeHeroTitle">Titre de la thématique</h1>
+                <p id="themeHeroDesc">Description de la thématique.</p>
+            </div>
+            <button class="back-home-btn" onclick="selectFilter('all')">← Tout afficher</button>
+        </div>
+    </section>
+
     <!-- Contenu principal -->
     <main class="container">
 
@@ -647,8 +755,8 @@
             <span style="font-size: 0.82rem;">PCSI • PSI • MPSI • MP</span>
         </div>
 
-        <!-- ==================== 1. MÉCANIQUE ==================== -->
-        <section class="domain-block" data-domain="mecanique" data-sub="mecanique" style="--card-accent: #0070B8;">
+        <!-- ==================== 1. SII — MÉCANIQUE ==================== -->
+        <section class="domain-block" data-discipline="sii" data-theme-id="sii-mecanique" style="--card-accent: #0070B8;">
             <div class="domain-banner">
                 <div class="domain-title-wrap" style="border-left-color: #0070B8;">
                     <span class="domain-kicker" style="color: #0070B8;">SII — Mécanique</span>
@@ -807,8 +915,8 @@
             </div>
         </section>
 
-        <!-- ==================== 2. SLCI ==================== -->
-        <section class="domain-block" data-domain="slci" data-sub="slci" style="--card-accent: #673AB7;">
+        <!-- ==================== 2. SII — SLCI ==================== -->
+        <section class="domain-block" data-discipline="sii" data-theme-id="sii-slci" style="--card-accent: #673AB7;">
             <div class="domain-banner">
                 <div class="domain-title-wrap" style="border-left-color: #673AB7;">
                     <span class="domain-kicker" style="color: #673AB7;">SII — SLCI & Asservissements</span>
@@ -957,8 +1065,44 @@
             </div>
         </section>
 
-        <!-- ==================== 3. ITC ==================== -->
-        <section class="domain-block" data-domain="itc" data-sub="itc" style="--card-accent: #E65100;">
+        <!-- ==================== 3. SII — INGÉNIERIE NUMÉRIQUE ==================== -->
+        <section class="domain-block" data-discipline="sii" data-theme-id="sii-numerique" style="--card-accent: #00897B;">
+            <div class="domain-banner">
+                <div class="domain-title-wrap" style="border-left-color: #00897B;">
+                    <span class="domain-kicker" style="color: #00897B;">SII — Ingénierie Numérique</span>
+                    <h2>Ingénierie Numérique</h2>
+                    <p>Résolution numérique, traitement des signaux et intelligence artificielle appliqués aux sciences de l'ingénieur.</p>
+                </div>
+                <a class="repo-btn" href="https://github.com/siicpgeamansur/ingenierie_numerique" target="_blank" rel="noopener">Code source GitHub ↗</a>
+            </div>
+
+            <div class="cards-grid">
+                <a class="sim-card" href="https://siicpgeamansur.github.io/ingenierie_numerique/resolution_equations.html">
+                    <div>
+                        <div class="sim-card-header"><span class="sim-card-title">Résolution d'équations</span><span class="badge-level">1re année</span></div>
+                        <p class="sim-card-desc">Méthodes numériques de résolution d'équations algébriques et différentielles.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir l'outil</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+                <a class="sim-card" href="https://siicpgeamansur.github.io/ingenierie_numerique/traitement_donnees.html">
+                    <div>
+                        <div class="sim-card-header"><span class="sim-card-title">Traitement de données</span><span class="badge-level">1re année</span></div>
+                        <p class="sim-card-desc">Manipulation, filtrage et exploitation de jeux de données expérimentales.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir l'outil</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+                <a class="sim-card" href="https://siicpgeamansur.github.io/ingenierie_numerique/ia.html">
+                    <div>
+                        <div class="sim-card-header"><span class="sim-card-title">IA en ingénierie numérique</span><span class="badge-level">1re année</span></div>
+                        <p class="sim-card-desc">Expérimentation des approches d'intelligence artificielle appliquées aux sciences de l'ingénieur.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir l'outil</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ==================== 4. ITC — INFORMATIQUE TRONC COMMUN ==================== -->
+        <section class="domain-block" data-discipline="itc" style="--card-accent: #E65100;">
             <div class="domain-banner">
                 <div class="domain-title-wrap" style="border-left-color: #E65100;">
                     <span class="domain-kicker" style="color: #E65100;">ITC — Informatique Tronc Commun</span>
@@ -968,7 +1112,7 @@
                 <a class="repo-btn" href="https://github.com/siicpgeamansur/ITC" target="_blank" rel="noopener">Code source GitHub ↗</a>
             </div>
 
-            <div class="sub-group" data-sub="bases">
+            <div class="sub-group" data-theme-id="itc-bases" style="--card-accent: #E65100;">
                 <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Bases de la programmation</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/structures_controle.html">
@@ -1002,8 +1146,8 @@
                 </div>
             </div>
 
-            <div class="sub-group" data-sub="algorithmique">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Algorithmique classique</h3>
+            <div class="sub-group" data-theme-id="itc-algorithmique" style="--card-accent: #EA580C;">
+                <h3 class="sub-group-title"><span class="dot" style="background:#EA580C;"></span>Algorithmique classique</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/recherche_sequentielle_boucles_imbriquees.html">
                         <div>
@@ -1036,8 +1180,8 @@
                 </div>
             </div>
 
-            <div class="sub-group" data-sub="complexite">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Complexité & validation</h3>
+            <div class="sub-group" data-theme-id="itc-complexite" style="--card-accent: #B45309;">
+                <h3 class="sub-group-title"><span class="dot" style="background:#B45309;"></span>Complexité & validation</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/methodes_analyse_algorithmes.html">
                         <div>
@@ -1049,8 +1193,8 @@
                 </div>
             </div>
 
-            <div class="sub-group" data-sub="donnees">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Représentation des données</h3>
+            <div class="sub-group" data-theme-id="itc-donnees" style="--card-accent: #C2410C;">
+                <h3 class="sub-group-title"><span class="dot" style="background:#C2410C;"></span>Représentation des données</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/representation_entiers_flottants.html">
                         <div>
@@ -1069,8 +1213,8 @@
                 </div>
             </div>
 
-            <div class="sub-group" data-sub="graphes">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Graphes & chemins</h3>
+            <div class="sub-group" data-theme-id="itc-graphes" style="--card-accent: #9A3412;">
+                <h3 class="sub-group-title"><span class="dot" style="background:#9A3412;"></span>Graphes & chemins</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/dfs_bfs_dijkstra.html">
                         <div>
@@ -1089,8 +1233,8 @@
                 </div>
             </div>
 
-            <div class="sub-group" data-sub="bdd">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Bases de données (SQL)</h3>
+            <div class="sub-group" data-theme-id="itc-bdd" style="--card-accent: #0D9488;">
+                <h3 class="sub-group-title"><span class="dot" style="background:#0D9488;"></span>Bases de données (SQL)</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/sql.html">
                         <div>
@@ -1102,8 +1246,8 @@
                 </div>
             </div>
 
-            <div class="sub-group" data-sub="ia">
-                <h3 class="sub-group-title"><span class="dot" style="background:#E65100;"></span>Programmation dynamique & IA</h3>
+            <div class="sub-group" data-theme-id="itc-ia" style="--card-accent: #7C3AED;">
+                <h3 class="sub-group-title"><span class="dot" style="background:#7C3AED;"></span>Programmation dynamique & IA</h3>
                 <div class="cards-grid">
                     <a class="sim-card" href="https://siicpgeamansur.github.io/ITC/programmation_dynamique.html">
                         <div>
@@ -1130,44 +1274,8 @@
             </div>
         </section>
 
-        <!-- ==================== 4. INGÉNIERIE NUMÉRIQUE ==================== -->
-        <section class="domain-block" data-domain="numerique" style="--card-accent: #00897B;">
-            <div class="domain-banner">
-                <div class="domain-title-wrap" style="border-left-color: #00897B;">
-                    <span class="domain-kicker" style="color: #00897B;">Calcul Scientifique</span>
-                    <h2>Ingénierie Numérique</h2>
-                    <p>Découverte et expérimentation des méthodes numériques du programme de SII en CPGE 1re année.</p>
-                </div>
-                <a class="repo-btn" href="https://github.com/siicpgeamansur/ingenierie_numerique" target="_blank" rel="noopener">Code source GitHub ↗</a>
-            </div>
-
-            <div class="cards-grid">
-                <a class="sim-card" href="https://siicpgeamansur.github.io/ingenierie_numerique/resolution_equations.html">
-                    <div>
-                        <div class="sim-card-header"><span class="sim-card-title">Résolution d'équations</span><span class="badge-level">1re année</span></div>
-                        <p class="sim-card-desc">Méthodes numériques de résolution d'équations algébriques et différentielles.</p>
-                    </div>
-                    <div class="sim-card-action"><span>Ouvrir l'outil</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </a>
-                <a class="sim-card" href="https://siicpgeamansur.github.io/ingenierie_numerique/traitement_donnees.html">
-                    <div>
-                        <div class="sim-card-header"><span class="sim-card-title">Traitement de données</span><span class="badge-level">1re année</span></div>
-                        <p class="sim-card-desc">Manipulation, filtrage et exploitation de jeux de données expérimentales.</p>
-                    </div>
-                    <div class="sim-card-action"><span>Ouvrir l'outil</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </a>
-                <a class="sim-card" href="https://siicpgeamansur.github.io/ingenierie_numerique/ia.html">
-                    <div>
-                        <div class="sim-card-header"><span class="sim-card-title">IA en ingénierie numérique</span><span class="badge-level">1re année</span></div>
-                        <p class="sim-card-desc">Expérimentation des approches d'intelligence artificielle appliquées aux sciences de l'ingénieur.</p>
-                    </div>
-                    <div class="sim-card-action"><span>Ouvrir l'outil</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </a>
-            </div>
-        </section>
-
         <!-- ==================== 5. GESTION EN CPGE ==================== -->
-        <section class="domain-block" data-domain="gestion" style="--card-accent: #C2185B;">
+        <section class="domain-block" data-discipline="gestion" style="--card-accent: #C2185B;">
             <div class="domain-banner">
                 <div class="domain-title-wrap" style="border-left-color: #C2185B;">
                     <span class="domain-kicker" style="color: #C2185B;">Méthodologie & Organisation</span>
@@ -1230,8 +1338,10 @@
             </div>
         </section>
 
+        <!-- Message affiché si une thématique est vide ou si la recherche ne donne rien -->
         <div class="empty-msg" id="emptyMsg">
-            <p><strong>Aucun simulateur trouvé</strong> pour cette recherche. Essayez un autre mot-clé ou changez de filtre.</p>
+            <p id="emptyMsgText"><strong>Aucun simulateur trouvé</strong> pour cette sélection.</p>
+            <button onclick="selectFilter('all')">Revenir à toutes les ressources</button>
         </div>
 
     </main>
@@ -1267,55 +1377,246 @@
     </footer>
 
     <script>
-        // Vrai mode sombre pur (#000000)
+        // ==================== CONFIGURATION DES THÉMATIQUES ====================
+        const THEMES = {
+            // SII
+            'sii-is': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'Ingénierie système',
+                desc: 'Analyse fonctionnelle, architecture des systèmes pluritechnologiques, cahier des charges et SysML.',
+                color: '#0284C7',
+                gradient: 'linear-gradient(135deg, #0369A1 0%, #0284C7 100%)'
+            },
+            'sii-mecanique': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'Mécanique',
+                desc: 'Cinématique, torseurs, liaisons, statique, dynamique et dimensionnement des actionneurs.',
+                color: '#0070B8',
+                gradient: 'linear-gradient(135deg, #004E82 0%, #0070B8 100%)'
+            },
+            'sii-slci': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'SLCI & Asservissements',
+                desc: 'Systèmes Linéaires Continus et Invariants, correction, instrumentation et conversion électromécanique.',
+                color: '#673AB7',
+                gradient: 'linear-gradient(135deg, #4527A0 0%, #673AB7 100%)'
+            },
+            'sii-numerique': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'Ingénierie numérique',
+                desc: 'Résolution numérique d’équations, traitement de données expérimentales et IA appliquée aux sciences de l’ingénieur.',
+                color: '#00897B',
+                gradient: 'linear-gradient(135deg, #00695C 0%, #00897B 100%)'
+            },
+            'sii-ecarts': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'Écarts',
+                desc: 'Analyse des écarts entre le système réel, le modèle simulé et le cahier des charges.',
+                color: '#D97706',
+                gradient: 'linear-gradient(135deg, #B45309 0%, #D97706 100%)'
+            },
+            'sii-sim': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'Modélisation système',
+                desc: 'Modélisation multi-physique, schémas-blocs et simulation comportementale des systèmes complexes.',
+                color: '#4F46E5',
+                gradient: 'linear-gradient(135deg, #3730A3 0%, #4F46E5 100%)'
+            },
+            'sii-exp': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'Expérimental',
+                desc: 'Protocoles de mesure, acquisition de signaux, incertitudes et validation expérimentale.',
+                color: '#059669',
+                gradient: 'linear-gradient(135deg, #047857 0%, #059669 100%)'
+            },
+            // ITC
+            'itc-bases': {
+                discipline: 'itc',
+                kicker: 'ITC — Thématique',
+                title: 'Bases de la programmation',
+                desc: 'Structures de contrôle, structures de données fondamentales, modules, images et récursivité en Python.',
+                color: '#E65100',
+                gradient: 'linear-gradient(135deg, #BF360C 0%, #E65100 100%)'
+            },
+            'itc-algorithmique': {
+                discipline: 'itc',
+                kicker: 'ITC — Thématique',
+                title: 'Algorithmique classique',
+                desc: 'Recherche séquentielle, dichotomie, algorithmes gloutons et algorithmes de tri.',
+                color: '#EA580C',
+                gradient: 'linear-gradient(135deg, #C2410C 0%, #EA580C 100%)'
+            },
+            'itc-complexite': {
+                discipline: 'itc',
+                kicker: 'ITC — Thématique',
+                title: 'Complexité & validation',
+                desc: 'Preuve de terminaison, correction d’algorithmes et analyse de complexité temporelle et spatiale.',
+                color: '#B45309',
+                gradient: 'linear-gradient(135deg, #92400E 0%, #B45309 100%)'
+            },
+            'itc-donnees': {
+                discipline: 'itc',
+                kicker: 'ITC — Thématique',
+                title: 'Représentation des données',
+                desc: 'Codage binaire des entiers, flottants IEEE 754 et tables de hachage.',
+                color: '#C2410C',
+                gradient: 'linear-gradient(135deg, #9A3412 0%, #C2410C 100%)'
+            },
+            'itc-graphes': {
+                discipline: 'itc',
+                kicker: 'ITC — Thématique',
+                title: 'Graphes & chemins',
+                desc: 'Modélisation par graphes, parcours en profondeur (DFS), en largeur (BFS), Dijkstra et A*.',
+                color: '#9A3412',
+                gradient: 'linear-gradient(135deg, #7C2D12 0%, #9A3412 100%)'
+            },
+            'itc-bdd': {
+                discipline: 'itc',
+                kicker: 'ITC — Thématique',
+                title: 'Bases de données (SQL)',
+                desc: 'Modèle relationnel, requêtes SQL, jointures, agrégations et interaction avec Python.',
+                color: '#0D9488',
+                gradient: 'linear-gradient(135deg, #0F766E 0%, #0D9488 100%)'
+            },
+            'itc-ia': {
+                discipline: 'itc',
+                kicker: 'ITC — Thématique',
+                title: 'Programmation dynamique & IA',
+                desc: 'Optimisation par programmation dynamique, apprentissage automatique (k-NN, k-moyennes) et théorie des jeux.',
+                color: '#7C3AED',
+                gradient: 'linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%)'
+            }
+        };
+
+        // ==================== GESTION DU THÈME SOMBRE ====================
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const preferredTheme = localStorage.getItem('theme') || 'light';
 
-        function setTheme(theme) {
+        function setDarkTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
             themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
             localStorage.setItem('theme', theme);
         }
-        setTheme(preferredTheme);
+        setDarkTheme(preferredTheme);
 
         themeToggle.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('data-theme');
-            setTheme(current === 'dark' ? 'light' : 'dark');
+            setDarkTheme(current === 'dark' ? 'light' : 'dark');
         });
 
-        // Filtrage & recherche unifiés
+        // ==================== FILTRAGE & NAVIGATION COLORÉE ====================
         const searchInput = document.getElementById('searchInput');
-        const navButtons = document.querySelectorAll('.nav-center [data-filter]');
         const domainBlocks = document.querySelectorAll('.domain-block');
         const emptyMsg = document.getElementById('emptyMsg');
+        const emptyMsgText = document.getElementById('emptyMsgText');
         const resultCounter = document.getElementById('resultCounter');
+        const themeHero = document.getElementById('themeHero');
+        const themeHeroKicker = document.getElementById('themeHeroKicker');
+        const themeHeroTitle = document.getElementById('themeHeroTitle');
+        const themeHeroDesc = document.getElementById('themeHeroDesc');
+        const brandSubLabel = document.getElementById('brandSubLabel');
 
-        let activeFilter = 'all';
-        let activeSubFilter = null;
+        let activeDiscipline = 'all'; // 'all' | 'sii' | 'itc' | 'gestion'
+        let activeThemeId = null;     // ex: 'sii-mecanique', 'itc-graphes', etc.
+
+        function updateNavbarUI() {
+            document.querySelectorAll('.nav-center .nav-link').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`btn-${activeDiscipline}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (activeThemeId && THEMES[activeThemeId]) {
+                const t = THEMES[activeThemeId];
+                document.documentElement.style.setProperty('--active-theme-color', t.color);
+                themeHero.style.background = t.gradient;
+                themeHeroKicker.textContent = t.kicker;
+                themeHeroTitle.textContent = t.title;
+                themeHeroDesc.textContent = t.desc;
+                themeHero.classList.add('visible');
+                brandSubLabel.textContent = t.title;
+            } else {
+                const disciplineColors = {
+                    all: '#0070B8',
+                    sii: '#0070B8',
+                    itc: '#E65100',
+                    gestion: '#C2185B'
+                };
+                const disciplineLabels = {
+                    all: 'Simulateurs Interactifs',
+                    sii: 'Sciences Industrielles (SII)',
+                    itc: 'Informatique (ITC)',
+                    gestion: 'Gestion & Compétences CPGE'
+                };
+                document.documentElement.style.setProperty('--active-theme-color', disciplineColors[activeDiscipline] || '#0070B8');
+                themeHero.classList.remove('visible');
+                brandSubLabel.textContent = disciplineLabels[activeDiscipline] || 'Simulateurs Interactifs';
+            }
+        }
 
         function updateCatalog() {
             const query = searchInput.value.toLowerCase().trim();
             let visibleCount = 0;
 
             domainBlocks.forEach(block => {
-                const domain = block.getAttribute('data-domain');
-                const matchesDomain = activeFilter === 'all' || domain === activeFilter;
+                const blockDiscipline = block.getAttribute('data-discipline');
+                const blockThemeId = block.getAttribute('data-theme-id');
+                const subGroups = block.querySelectorAll('.sub-group');
 
-                if (!matchesDomain && !activeSubFilter) {
+                // Vérifie si le bloc appartient à la discipline demandée
+                if (activeDiscipline !== 'all' && blockDiscipline !== activeDiscipline) {
                     block.classList.add('hidden');
                     return;
                 }
 
-                let domainVisibleCards = 0;
-                const subGroups = block.querySelectorAll('.sub-group');
+                // Cas 1 : Le bloc entier correspond à une thématique (ex: Mécanique, SLCI, Ingénierie numérique)
+                if (blockThemeId) {
+                    if (activeThemeId && blockThemeId !== activeThemeId) {
+                        block.classList.add('hidden');
+                        return;
+                    }
 
+                    let blockVisibleCards = 0;
+                    if (subGroups.length > 0) {
+                        subGroups.forEach(group => {
+                            let groupVisible = 0;
+                            group.querySelectorAll('.sim-card').forEach(card => {
+                                const match = card.textContent.toLowerCase().includes(query);
+                                card.classList.toggle('hidden', !match);
+                                if (match) {
+                                    groupVisible++;
+                                    blockVisibleCards++;
+                                    visibleCount++;
+                                }
+                            });
+                            group.classList.toggle('hidden', groupVisible === 0);
+                        });
+                    } else {
+                        block.querySelectorAll('.sim-card').forEach(card => {
+                            const match = card.textContent.toLowerCase().includes(query);
+                            card.classList.toggle('hidden', !match);
+                            if (match) {
+                                blockVisibleCards++;
+                                visibleCount++;
+                            }
+                        });
+                    }
+                    block.classList.toggle('hidden', blockVisibleCards === 0);
+                    return;
+                }
+
+                // Cas 2 : Le bloc contient des sous-groupes thématiques (ex: ITC)
+                let blockVisibleCards = 0;
                 if (subGroups.length > 0) {
                     subGroups.forEach(group => {
-                        const subName = group.getAttribute('data-sub');
-                        const matchesSub = !activeSubFilter || subName === activeSubFilter;
-
-                        if (!matchesSub && activeFilter === 'all') {
+                        const groupThemeId = group.getAttribute('data-theme-id');
+                        if (activeThemeId && groupThemeId !== activeThemeId) {
                             group.classList.add('hidden');
                             return;
                         }
@@ -1326,63 +1627,87 @@
                             card.classList.toggle('hidden', !match);
                             if (match) {
                                 groupVisible++;
-                                domainVisibleCards++;
+                                blockVisibleCards++;
                                 visibleCount++;
                             }
                         });
                         group.classList.toggle('hidden', groupVisible === 0);
                     });
                 } else {
+                    // Cas 3 : Bloc sans sous-thématique (ex: Gestion CPGE)
+                    if (activeThemeId) {
+                        block.classList.add('hidden');
+                        return;
+                    }
                     block.querySelectorAll('.sim-card').forEach(card => {
                         const match = card.textContent.toLowerCase().includes(query);
                         card.classList.toggle('hidden', !match);
                         if (match) {
-                            domainVisibleCards++;
+                            blockVisibleCards++;
                             visibleCount++;
                         }
                     });
                 }
 
-                block.classList.toggle('hidden', domainVisibleCards === 0);
+                block.classList.toggle('hidden', blockVisibleCards === 0);
             });
 
-            emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+            if (visibleCount === 0) {
+                emptyMsg.style.display = 'block';
+                if (activeThemeId && THEMES[activeThemeId] && !query) {
+                    emptyMsgText.innerHTML = `Aucun simulateur n'est encore publié dans la thématique <strong>${THEMES[activeThemeId].title}</strong>.`;
+                } else {
+                    emptyMsgText.innerHTML = `<strong>Aucun simulateur trouvé</strong> pour cette recherche.`;
+                }
+            } else {
+                emptyMsg.style.display = 'none';
+            }
+
             resultCounter.textContent = `${visibleCount} ressource${visibleCount > 1 ? 's' : ''} affichée${visibleCount > 1 ? 's' : ''}`;
         }
 
-        navButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                activeFilter = btn.getAttribute('data-filter');
-                activeSubFilter = null;
-                navButtons.forEach(b => {
-                    b.classList.toggle('active', b.getAttribute('data-filter') === activeFilter);
-                });
-                updateCatalog();
-            });
-        });
-
-        function filterBySub(subKey) {
-            activeFilter = 'itc'; // Cible le domaine principal contenant les sous-groupes (ex: ITC)
-            if (subKey === 'is' || subKey === 'mecanique' || subKey === 'slci' || subKey === 'info' || subKey === 'ecarts' || subKey === 'sim' || subKey === 'exp') {
-                activeFilter = 'mecanique'; // Ajuste si nécessaire selon les sections
-            }
-            activeSubFilter = subKey;
-            navButtons.forEach(b => b.classList.remove('active'));
-            updateCatalog();
-        }
-
-        function resetFilters() {
-            activeFilter = 'all';
-            activeSubFilter = null;
-            navButtons.forEach(b => {
-                b.classList.toggle('active', b.getAttribute('data-filter') === 'all');
-            });
+        function selectFilter(discipline) {
+            activeDiscipline = discipline;
+            activeThemeId = null;
             searchInput.value = '';
+            history.replaceState(null, '', discipline === 'all' ? window.location.pathname : `#${discipline}`);
+            updateNavbarUI();
+            updateCatalog();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectTheme(themeId) {
+            const theme = THEMES[themeId];
+            if (!theme) return;
+            activeDiscipline = theme.discipline;
+            activeThemeId = themeId;
+            searchInput.value = '';
+            history.replaceState(null, '', `#theme=${themeId}`);
+            updateNavbarUI();
+            updateCatalog();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Restauration de l'état via l'URL (#theme=... ou #sii / #itc / #gestion)
+        function applyHashFromURL() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash.startsWith('theme=')) {
+                const themeId = hash.replace('theme=', '');
+                if (THEMES[themeId]) {
+                    activeDiscipline = THEMES[themeId].discipline;
+                    activeThemeId = themeId;
+                }
+            } else if (['all', 'sii', 'itc', 'gestion'].includes(hash)) {
+                activeDiscipline = hash;
+                activeThemeId = null;
+            }
+            updateNavbarUI();
             updateCatalog();
         }
 
+        window.addEventListener('hashchange', applyHashFromURL);
         searchInput.addEventListener('input', updateCatalog);
-        updateCatalog();
+        applyHashFromURL();
     </script>
 </body>
 </html>
