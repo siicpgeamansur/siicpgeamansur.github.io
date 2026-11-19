@@ -748,6 +748,7 @@
                         <button onclick="selectTheme('sii-mecanique')"><span class="swatch" style="background:#0070B8;"></span>Mécanique</button>
                         <button onclick="selectTheme('sii-slci')"><span class="swatch" style="background:#673AB7;"></span>SLCI & Asservissements</button>
                         <button onclick="selectTheme('sii-numerique')"><span class="swatch" style="background:#00897B;"></span>Ingénierie numérique</button>
+                        <button onclick="selectTheme('sii-jumeaux')"><span class="swatch" style="background:#0891B2;"></span>Jumeaux numériques</button>
                         <button onclick="selectTheme('sii-ecarts')"><span class="swatch" style="background:#D97706;"></span>Écarts</button>
                         <button onclick="selectTheme('sii-sim')"><span class="swatch" style="background:#4F46E5;"></span>Modélisation système</button>
                         <button onclick="selectTheme('sii-exp')"><span class="swatch" style="background:#059669;"></span>Expérimental</button>
@@ -813,7 +814,7 @@
                 <button class="level-btn" data-level="2" onclick="selectLevel('2')">2e année</button>
             </div>
             <div class="results-info">
-                <span id="resultCounter">60 ressources affichées</span> • <span style="font-size: 0.82rem;">PCSI • PSI • MPSI • MP</span>
+                <span id="resultCounter">68 ressources affichées</span> • <span style="font-size: 0.82rem;">PCSI • PSI • MPSI • MP</span>
             </div>
         </div>
 
@@ -900,6 +901,16 @@
                                 <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">1re année</span></div>
                             </div>
                             <p class="sim-card-desc">Animation de deux bras en liaison pivot : modification des longueurs et positions angulaires pour visualiser la zone inaccessible.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer la simulation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/mecanique/rsg.html" data-lvl="1">
+                        <div>
+                            <div class="sim-card-header">
+                                <span class="sim-card-title">Roulement sans glissement</span>
+                                <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">1re année</span></div>
+                            </div>
+                            <p class="sim-card-desc">Animation pour comprendre le glissement et la condition de roulement sans glissement d'une roue sur le sol.</p>
                         </div>
                         <div class="sim-card-action"><span>Lancer la simulation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                     </a>
@@ -1089,6 +1100,16 @@
                         </div>
                         <div class="sim-card-action"><span>Lancer la simulation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                     </a>
+                    <a class="sim-card" href="https://siicpgeamansur.github.io/SLCI/non_linearites.html" data-lvl="2">
+                        <div>
+                            <div class="sim-card-header">
+                                <span class="sim-card-title">Non-linéarités</span>
+                                <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">2e année</span></div>
+                            </div>
+                            <p class="sim-card-desc">Étude des principales non-linéarités (saturation, seuil, hystérésis, jeu) et de leur impact sur les systèmes asservis.</p>
+                        </div>
+                        <div class="sim-card-action"><span>Lancer la simulation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    </a>
                     <a class="sim-card" href="https://siicpgeamansur.github.io/SLCI/performances.html" data-lvl="1">
                         <div>
                             <div class="sim-card-header">
@@ -1270,6 +1291,71 @@
                         <p class="sim-card-desc">Expérimentation des approches d'intelligence artificielle appliquées aux sciences de l'ingénieur.</p>
                     </div>
                     <div class="sim-card-action"><span>Ouvrir l'outil</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ==================== 3bis. SII — JUMEAUX NUMÉRIQUES ==================== -->
+        <section class="domain-block" data-discipline="sii" data-theme-id="sii-jumeaux" style="--card-accent: #0891B2;">
+            <div class="domain-banner">
+                <div class="domain-title-wrap" style="border-left-color: #0891B2;">
+                    <span class="domain-kicker" style="color: #0891B2;">SII — Jumeaux Numériques</span>
+                    <h2>Jumeaux Numériques</h2>
+                    <p>Simulation virtuelle interactive de systèmes pluritechnologiques de laboratoire (cinématique, dynamique et asservissement).</p>
+                </div>
+                <a class="repo-btn" href="https://github.com/siicpgeamansur/Jumeaux_numeriques" target="_blank" rel="noopener">Code source GitHub ↗</a>
+            </div>
+
+            <div class="cards-grid">
+                <a class="sim-card" href="https://siicpgeamansur.github.io/Jumeaux_numeriques/MaxPID.html" data-lvl="1">
+                    <div>
+                        <div class="sim-card-header">
+                            <span class="sim-card-title">MaxPID</span>
+                            <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">1re/2e</span></div>
+                        </div>
+                        <p class="sim-card-desc">Jumeau numérique du bras articulé asservi MaxPID : modélisation, réponse temporelle et réglage de la boucle de commande.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir le jumeau</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+                <a class="sim-card" href="https://siicpgeamansur.github.io/Jumeaux_numeriques/attelle_CPM.html" data-lvl="1">
+                    <div>
+                        <div class="sim-card-header">
+                            <span class="sim-card-title">Attelle de genou (CPM)</span>
+                            <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">1re/2e</span></div>
+                        </div>
+                        <p class="sim-card-desc">Jumeau numérique d'une attelle de rééducation fonctionnelle du genou : cinématique et analyse des mouvements.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir le jumeau</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+                <a class="sim-card" href="https://siicpgeamansur.github.io/Jumeaux_numeriques/CoMax.html" data-lvl="1">
+                    <div>
+                        <div class="sim-card-header">
+                            <span class="sim-card-title">CoMax</span>
+                            <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">1re/2e</span></div>
+                        </div>
+                        <p class="sim-card-desc">Jumeau numérique du système CoMax : étude comportementale, transmission de puissance et performances.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir le jumeau</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+                <a class="sim-card" href="https://siicpgeamansur.github.io/Jumeaux_numeriques/trieuse.html" data-lvl="1">
+                    <div>
+                        <div class="sim-card-header">
+                            <span class="sim-card-title">Trieuse de pièces</span>
+                            <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">1re/2e</span></div>
+                        </div>
+                        <p class="sim-card-desc">Jumeau numérique d'une trieuse automatisée de pièces : chaîne d'information, détection et pilotage.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir le jumeau</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </a>
+                <a class="sim-card" href="https://siicpgeamansur.github.io/Jumeaux_numeriques/Doshydro.html" data-lvl="1">
+                    <div>
+                        <div class="sim-card-header">
+                            <span class="sim-card-title">Pompe Doshydro</span>
+                            <div class="sim-card-meta"><span class="badge-discipline sii">SII</span><span class="badge-level">1re/2e</span></div>
+                        </div>
+                        <p class="sim-card-desc">Jumeau numérique de la pompe doseuse Doshydro : transformation de mouvement, débit et régulation.</p>
+                    </div>
+                    <div class="sim-card-action"><span>Ouvrir le jumeau</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                 </a>
             </div>
         </section>
@@ -1606,6 +1692,7 @@
                         <li><a href="https://github.com/siicpgeamansur/SLCI" target="_blank" rel="noopener">SLCI & Actionneurs</a></li>
                         <li><a href="https://github.com/siicpgeamansur/ITC" target="_blank" rel="noopener">Informatique (ITC)</a></li>
                         <li><a href="https://github.com/siicpgeamansur/ingenierie_numerique" target="_blank" rel="noopener">Ingénierie Numérique</a></li>
+                        <li><a href="https://github.com/siicpgeamansur/Jumeaux_numeriques" target="_blank" rel="noopener">Jumeaux Numériques</a></li>
                         <li><a href="https://github.com/siicpgeamansur/gestion" target="_blank" rel="noopener">Gestion CPGE</a></li>
                     </ul>
                 </div>
@@ -1656,6 +1743,14 @@
                 desc: 'Résolution numérique d’équations, traitement de données expérimentales et IA appliquée aux sciences de l’ingénieur.',
                 color: '#00897B',
                 gradient: 'linear-gradient(135deg, #00695C 0%, #00897B 100%)'
+            },
+            'sii-jumeaux': {
+                discipline: 'sii',
+                kicker: 'SII — Thématique',
+                title: 'Jumeaux numériques',
+                desc: 'Simulation virtuelle interactive de systèmes pluritechnologiques de laboratoire (MaxPID, attelle CPM, CoMax, trieuse, Doshydro).',
+                color: '#0891B2',
+                gradient: 'linear-gradient(135deg, #0E7490 0%, #0891B2 100%)'
             },
             'sii-ecarts': {
                 discipline: 'sii',
